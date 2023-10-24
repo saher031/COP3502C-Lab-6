@@ -19,6 +19,20 @@ def encoder(user_password):  # Encoder function
         encoded_pass += str(num)
     return encoded_pass  # Output string of encoded numbers
 
+
+# decode function written by Kang
+def decode(password):
+    res = ''
+
+    # take the number and -3 to it, adding only the first digit to res
+    for i in password:
+        num = (int(i) - 3) % 10
+        res += str(num)
+
+    # return the decoded password, containing original password
+    return res
+
+
 if __name__ == '__main__':
     while True:  # main loop
         print()
@@ -29,10 +43,14 @@ if __name__ == '__main__':
             user_password = input("Please enter your password to encode: ")
             encoded_pass = encoder(user_password)
             print("Your password has been encoded and stored!")
-            print(encoded_pass)
+            # print(encoded_pass) Kang commented this out because this is not needed to display the encoded password
 
         if option == 2:
-            pass
+            # decode the encoded password and print out original password
+            print(f'The encoded password is {encoder(user_password)}, '
+                  f'and the original password is {decode(encoder(user_password))}.'
+                  )
+            print()
 
         if option == 3:  # Exit the loop
             break
